@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Xunit;
@@ -8,8 +10,7 @@ namespace OpenVsixSignTool.Core.Tests
     public class CertificateSigningContextTests
     {
         [Theory]
-        [InlineData(@"certs\rsa-2048-sha256.pfx")]
-        [InlineData(@"certs\rsa-2048-sha1.pfx")]
+        [MemberData(nameof(RsaCertificateTheories))]
         public async Task ShouldSignABlobOfDataWithRsaSha256(string pfxPath)
         {
             var certificate = new X509Certificate2(pfxPath, "test");
@@ -29,8 +30,7 @@ namespace OpenVsixSignTool.Core.Tests
         }
 
         [Theory]
-        [InlineData(@"certs\rsa-2048-sha256.pfx")]
-        [InlineData(@"certs\rsa-2048-sha1.pfx")]
+        [MemberData(nameof(RsaCertificateTheories))]
         public async Task ShouldSignABlobOfDataWithRsaSha1(string pfxPath)
         {
             var certificate = new X509Certificate2(pfxPath, "test");
@@ -50,7 +50,7 @@ namespace OpenVsixSignTool.Core.Tests
         }
 
         [Theory]
-        [InlineData(@"certs\ecdsa-p256-sha256.pfx")]
+        [MemberData(nameof(EcdsaCertificateTheories))]
         public async Task ShouldSignABlobOfDataWithEcdsaP256Sha256(string pfxPath)
         {
             var certificate = new X509Certificate2(pfxPath, "test");
@@ -66,6 +66,25 @@ namespace OpenVsixSignTool.Core.Tests
                     var roundtrips = await context.VerifyDigestAsync(digest, signature);
                     Assert.True(roundtrips);
                 }
+            }
+        }
+
+        public static IEnumerable<object[]> RsaCertificateTheories
+        {
+            get
+            {
+                var rsa2048Sha256 = Path.Combine("certs", "rsa-2048-sha256.pfx");
+                var rsa2048Sha1 = Path.Combine("certs", "rsa-2048-sha1.pfx");
+                yield return new object[] { rsa2048Sha256 };
+                yield return new object[] { rsa2048Sha1 };
+            }
+        }
+
+        public static IEnumerable<object[]> EcdsaCertificateTheories
+        {
+            get
+            {
+                yield return new object[] { Path.Combine("certs", "ecdsa-p256-sha256.pfx") };
             }
         }
     }

@@ -32,7 +32,7 @@ namespace OpenVsixSignTool.Core.Tests
         {
             try
             {
-                var contents = File.ReadAllText(@"private\azure-creds.json");
+                var contents = File.ReadAllText(Path.Combine("private", "azure-creds.json"));
                 Credentials = JsonConvert.DeserializeObject<TestAzureCredentials>(contents);
             }
             catch (Exception e)

@@ -7,7 +7,7 @@ namespace OpenVsixSignTool.Core.Tests
 {
     public class Crypt32Tests
     {
-        [Fact]
+        [ConditionalFact(supportsWindows: true)]
         public void ShouldTimestampData()
         {
             var data = new byte[] { 1, 2, 3 };
