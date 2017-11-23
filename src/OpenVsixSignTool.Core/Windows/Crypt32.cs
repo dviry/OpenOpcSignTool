@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace OpenVsixSignTool.Core.Interop
+namespace OpenVsixSignTool.Core.Windows.Interop
 {
     internal static class Crypt32
     {

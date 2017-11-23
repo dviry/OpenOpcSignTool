@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <AssemblyName>OpenVsixSignTool.Tests</AssemblyName>
     <PackageId>OpenVsixSignTool.Tests</PackageId>
     <VersionPrefix>0.1.0</VersionPrefix>
@@ -18,10 +18,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta5-build3769" />
 
     <ProjectReference Include="..\..\src\OpenVsixSignTool\OpenVsixSignTool.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework) == 'net462'">
-    <Reference Include="System.Security" />
   </ItemGroup>
   
   <ItemGroup>

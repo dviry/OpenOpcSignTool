@@ -1,4 +1,4 @@
-﻿using OpenVsixSignTool.Core.Interop;
+﻿using OpenVsixSignTool.Core.Windows.Interop;
 using System;
 using System.Runtime.InteropServices;
 using Xunit;

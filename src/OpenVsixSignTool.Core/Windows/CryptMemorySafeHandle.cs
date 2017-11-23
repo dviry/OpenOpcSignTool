@@ -1,4 +1,4 @@
-﻿namespace OpenVsixSignTool.Core.Interop
+﻿namespace OpenVsixSignTool.Core.Windows.Interop
 {
     internal sealed class CryptMemorySafeHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
     {
