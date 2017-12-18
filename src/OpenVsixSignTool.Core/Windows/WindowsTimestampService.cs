@@ -6,9 +6,11 @@ using OpenVsixSignTool.Core.Windows.Interop;
 
 namespace OpenVsixSignTool.Core.Windows
 {
-    public class WindowsTimestampService : ITimestampService
+    public sealed class WindowsTimestampService : ITimestampService
     {
+#pragma warning disable CS1998
         public async Task<ErrorOr<byte[]>> SignAsync(byte[] timestampObject, Uri timestampServer, HashAlgorithmName timestampAlgorithm, TimestampNonceFactory nonce)
+#pragma warning restore CS1998
         {
             var oid = HashAlgorithmTranslator.TranslateFromNameToOid(timestampAlgorithm);
             var parameters = new CRYPT_TIMESTAMP_PARA

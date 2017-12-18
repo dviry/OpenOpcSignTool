@@ -11,6 +11,10 @@ namespace OpenVsixSignTool.Core
             {
                 return new Windows.WindowsTimestampService();
             }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return new MacOS.MacOSTimestampService();
+            }
             else
             {
                 throw new PlatformNotSupportedException();
